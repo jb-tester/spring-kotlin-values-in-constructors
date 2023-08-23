@@ -20,12 +20,12 @@ fun main(args: Array<String>) {
 @Service
 class FooService(
     @Value("\${foo.bar}")
-    val someStrWithValueAnno: String  // should be no error
+    val someStrWithValueAnno: String  // should be no error: IDEA-258894
 )
 @RestController
 class FooController(
     private val fooService: FooService,
-    private val someStrWithInitValue: String = "!!!",  // should be no error
+    private val someStrWithInitValue: String = "!!!",  // should be no error: IDEA-303066
     private val barService: BarService? = null
 ) {
     @GetMapping
@@ -51,7 +51,7 @@ class ConfigurationTest {
 class CompTest(
    // foo: FooService, // in case of multiple parameters the gutter icon is shown
    // barService: BarService?  // in case of not required NOT initalized single parameter the gutter IS shown
-    barService: BarService? = null // in case of not required and initalized single parameter no gutter is shown
+    barService: BarService? = null // in case of not required and initalized single parameter no gutter is shown: IDEA-303718
 ) {
 
 }
